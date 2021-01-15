@@ -41,6 +41,7 @@ ELSEIF(ECHO_PLATFORM_MAC)
 	TARGET_LINK_LIBRARIES(${MODULE_NAME} googletest engine glslang spirv-cross pugixml freeimage lua zlib)
 	TARGET_LINK_LIBRARIES(${MODULE_NAME} tinyexpr)
 ENDIF()
+TARGET_LINK_LIBRARIES(${MODULE_NAME} nodeeditor)
 
 # set folder
 SET_TARGET_PROPERTIES(${MODULE_NAME} PROPERTIES FOLDER "tests")
