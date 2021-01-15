@@ -108,8 +108,11 @@ namespace QT_UI
 
 	void QMenuBarEx::mouseMoveEvent(QMouseEvent *e)
 	{
-		if (e->buttons()==Qt::LeftButton)
+		if (e->buttons()==Qt::LeftButton && !m_parent->isFullScreen())
 		{
+            if (m_parent->isMaximized())
+				onMaxmized();
+
 			QPointF changedPos = e->screenPos() - m_lastPos;
 			QPoint  destPos = m_parent->pos() + QPoint(changedPos.x(), changedPos.y());
 			m_parent->move(destPos);
@@ -123,7 +126,10 @@ namespace QT_UI
 		QAction* action = QMenuBar::actionAt(event->pos());
 		if (!action)
 		{
-			onMaxmized();
+			if (!m_parent->isFullScreen())
+			    onMaxmized();
+			else
+				onFullScreen();
 		}
 	}
 
